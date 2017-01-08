@@ -81,13 +81,15 @@
     <meta charset="UTF-8">
     <title>系统发生错误</title>
     <meta name="robots" content="noindex,nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <style>
         /* Base */
         body {
             color: #333;
-            font: 16px Verdana, "Helvetica Neue", helvetica, Arial, 'Microsoft YaHei', sans-serif;
+            font: 14px Verdana, "Helvetica Neue", helvetica, Arial, 'Microsoft YaHei', sans-serif;
             margin: 0;
             padding: 0 20px 20px;
+            word-break: break-word;
         }
         h1{
             margin: 10px 0 0;
@@ -378,16 +380,16 @@
     <div class="exception-var">
         <h2>Environment Variables</h2>
         <?php foreach ((array) $tables as $label => $value) { ?>
-        <table>
+        <div>
             <?php if(empty($value)){ ?>
-            <caption><?php echo $label; ?><small>empty</small></caption>
+            <div><?php echo $label; ?><small>empty</small></div>
             <?php } else { ?>
-            <caption><?php echo $label; ?></caption>
-            <tbody>
+            <div><?php echo $label; ?></div>
+            <div>
                 <?php foreach ((array) $value as $key => $val) { ?>
-                <tr>
-                    <td><?php echo htmlentities($key); ?></td>
-                    <td>
+                <div>
+                    <div class="col-md-3"><strong><?php echo htmlentities($key); ?></strong></div>
+                    <div class="col-md-9"><small>
                         <?php 
                             if(is_array($val) || is_object($val)){ 
                                 echo htmlentities(json_encode($val, JSON_PRETTY_PRINT));
@@ -399,12 +401,12 @@
                                 echo 'Resource';
                             }
                         ?>
-                    </td>
-                </tr>
+                    </small></div>
+                </div>
                 <?php } ?>
-            </tbody>
+            </div>
             <?php } ?>
-        </table>
+        </div>
         <?php } ?>
     </div>
     <?php } ?>
